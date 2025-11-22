@@ -104,5 +104,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space)) {
             rb.gravityScale = 1;
         }
+
+        if (Input.GetKeyUp(d) || Input.GetKeyUp(q)) rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
     }
 }
