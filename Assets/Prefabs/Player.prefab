@@ -103,7 +103,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 0
-  space: 32
+  PlatformLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  rb: {fileID: 0}
 --- !u!114 &1526469730638485899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,12 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4ec20d6e34e4a4e8ed47fbff961323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listCoords: []
   speed: 10
   imgSize: 2.2
   d: 100
   q: 97
-  jumpCoolDown: 1.5
-  lastTimeJump: 0
+  rb: {fileID: 0}
+  velocityMax: 0
 --- !u!50 &7760611694707577379
 Rigidbody2D:
   serializedVersion: 5
