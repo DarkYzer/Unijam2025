@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 817
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,9 +117,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 2441
-        height: 2444
+        y: 1634
+        width: 817
+        height: 817
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,11 +134,187 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_1
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 1634
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7ce35db22237514baa0c5a9a08c435d
+      internalID: 1596557459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_2
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 1634
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974bb51d765e2b946ad212e23ec8c96f
+      internalID: -365339729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 817
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f39a8a15516e03e49a9b035b03504eef
+      internalID: 1195571627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_4
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 817
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483cd5f270e258e4488a3304f9ecbc92
+      internalID: -746699288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_5
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 817
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded03348806884f4cb4df00795904f04
+      internalID: 289402148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9df0393f05a14a744962e4085d9a4944
+      internalID: -1792745644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_7
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 0
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcabc21e33f3e87469b042fd0e1dc686
+      internalID: -303867790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: les blocs avec du blanc dedans_8
+      rect:
+        serializedVersion: 2
+        x: 1634
+        y: 0
+        width: 817
+        height: 817
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21c2337587d4cb42a4ca9c5212c5333
+      internalID: -1599402124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4b91f59d8ccb5b345ab4c251f3dbf864
     internalID: 0
     vertices: []
     indices: 
@@ -149,6 +325,14 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       les blocs avec du blanc dedans_0: -6192423083397703374
+      les blocs avec du blanc dedans_1: 1596557459
+      les blocs avec du blanc dedans_2: -365339729
+      les blocs avec du blanc dedans_3: 1195571627
+      les blocs avec du blanc dedans_4: -746699288
+      les blocs avec du blanc dedans_5: 289402148
+      les blocs avec du blanc dedans_6: -1792745644
+      les blocs avec du blanc dedans_7: -303867790
+      les blocs avec du blanc dedans_8: -1599402124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
