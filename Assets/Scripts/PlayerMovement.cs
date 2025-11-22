@@ -4,14 +4,15 @@ using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour
 {
     public static PlayerMovement Singleton { get; private set; }
-
     public static int playerAmount = 1;
     public List<Vector2> listCoords = new List<Vector2>();
     public float speed;
     public float imgSize;
     public KeyCode d = KeyCode.D;
     public KeyCode q = KeyCode.Q;
+    public Rigidbody2D rb;
 
+    public float velocityMax;
 
     private void Awake()
     {
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log($"X:{deltaX} Y:{deltaY}");
 
             if (deltaX != 0 && deltaY != 0){
-                if (deltaX > deltaY)
+                if (Mathf.Abs(deltaX) < Mathf.Abs(deltaY))
                     newCoord += Vector2.up * deltaY/Mathf.Abs(deltaY);
                 else
                     newCoord += Vector2.right * deltaX/Mathf.Abs(deltaX);
@@ -56,25 +57,23 @@ public class PlayerMovement : MonoBehaviour
             //else if (otherPos.x < myPos.x - offset)
             //    newCoord += Vector2.left;
 
-            // ---- ATTACH ----
-            Transform otherT = collision.collider.transform;
-            otherT.SetParent(transform);
-            
-            Debug.Log($"{newCoord} !!!!!!!!!!!!!!!");
-
             if (! listCoords.Contains(newCoord))
             {
+                // ---- ATTACH ----
+                Transform otherT = collision.collider.transform;
+                otherT.SetParent(transform);
                 playerAmount ++;
                 otherBonhomme.localCoord = newCoord;
                 listCoords.Add(newCoord);
+                // ---- PLACEMENT ----
+                otherT.localPosition = new Vector3(
+                    newCoord.x * 2* offset,
+                    newCoord.y * 2* offset,
+                    0
+                );
             }
 
-            // ---- PLACEMENT ----
-            otherT.localPosition = new Vector3(
-                newCoord.x * 2* offset,
-                newCoord.y * 2* offset,
-                0
-            );
+            
         }
     }
 
@@ -85,14 +84,14 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
-
+        if (rb.velocity.magnitude < velocityMax)
+            rb.AddForce(Vector2.left * speed);
     }
 
     void MoveRight()
     {
-        transform.position += Vector3.right * speed * Time.deltaTime;
-        
+        if (rb.velocity.magnitude < velocityMax)
+            rb.AddForce(Vector2.right * speed);
     }
 
     void FixedUpdate()
@@ -100,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(d)) MoveRight();
         if (Input.GetKey(q)) MoveLeft();
         if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
+            rb.gravityScale = 1;
             GetComponent<Jump>().Jumping();
         }
     }
