@@ -9,5 +9,6 @@ public class EndingZone : MonoBehaviour
     void Update()
     {
         if(partsAmount <= partsCompleted && PlayerMovement.playerAmount == partsAmount) Debug.Log("gagné!");
+        
     }
 }
