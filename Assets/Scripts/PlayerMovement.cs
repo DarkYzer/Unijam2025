@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode q = KeyCode.Q;
     public float jumpCoolDown;
     public float lastTimeJump;
+    public Rigidbody2D rb;
 
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -79,13 +80,13 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+        rb.MovePosition(transform.position  + Vector3.left * speed * Time.deltaTime);
 
     }
 
     void MoveRight()
     {
-        transform.position += Vector3.right * speed * Time.deltaTime;
+        rb.MovePosition(transform.position  + Vector3.right * speed * Time.deltaTime);
         
     }
 
