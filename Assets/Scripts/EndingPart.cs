@@ -5,16 +5,23 @@ public class EndingPart : MonoBehaviour
     void Start()
     {
         EndingZone.partsAmount++;
+        Debug.Log(EndingZone.partsAmount);
     }
 
     // Update is called once per frame
-    void OnTriggerEnter()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        EndingZone.partsCompleted++;
+        Bonhomme bonhomme;
+        other.gameObject.TryGetComponent<Bonhomme>(out bonhomme);
+        bonhomme.counter++;
+        if(bonhomme.counter == 1) EndingZone.partsCompleted++;
     }
 
-    void OnTriggerExit()
+    void OnTriggerExit2D(Collider2D other)
     {
-        EndingZone.partsCompleted--;
+        Bonhomme bonhomme;
+        other.gameObject.TryGetComponent<Bonhomme>(out bonhomme);
+        bonhomme.counter--;
+        if(bonhomme.counter == 0) EndingZone.partsCompleted--;
     }
 }
