@@ -11,8 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float imgSize;
     public KeyCode d = KeyCode.D;
     public KeyCode q = KeyCode.Q;
-    public float jumpCoolDown;
-    public float lastTimeJump;
+
 
     private void Awake()
     {
@@ -100,8 +99,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(d)) MoveRight();
         if (Input.GetKey(q)) MoveLeft();
-        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey(GetComponent<Jump>().space)){
-            lastTimeJump = Time.time;
+        if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
             GetComponent<Jump>().Jumping();
         }
     }
