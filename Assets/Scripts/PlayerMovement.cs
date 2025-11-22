@@ -64,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
                 playerAmount ++;
                 // ---- PLACEMENT ----
                 // Transform localPositionBackup = otherT.localPosition;
+                otherBonhomme.localCoord = newCoord;
+                listCoords.Add(newCoord);
+                otherT.SetParent(transform);
 
                 otherT.localPosition = new Vector3(
                     newCoord.x * 2* offset,
@@ -73,9 +76,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 // if ()
 
-                otherBonhomme.localCoord = newCoord;
-                listCoords.Add(newCoord);
-                otherT.SetParent(transform);
+                
             }
 
             
