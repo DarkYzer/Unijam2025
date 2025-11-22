@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 newCoord = myBonhomme.localCoord;
 
-        float offset = imgSize / 2f;
+        float offset = imgSize / 4f;
 
         // ---- DÉTECTION DIRECTION ----
         if (otherPos.x > myPos.x + offset)
@@ -46,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
         // ---- PLACEMENT ----
         otherT.localPosition = new Vector3(
-            newCoord.x * offset,
-            newCoord.y * offset,
+            newCoord.x * 2* offset,
+            newCoord.y * 2* offset,
             0
         );
 
