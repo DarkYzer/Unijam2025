@@ -54,9 +54,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GetComponent<Jump>);
         if (Input.GetKey(d)) transform.position += Vector3.right * speed * Time.deltaTime;
         if (Input.GetKey(q)) transform.position += Vector3.left * speed * Time.deltaTime;
-        if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space))
+        if (GetComponent<Jump>().IsGrounded() && Input.GetKey(GetComponent<Jump>().space))
         {
             GetComponent<Jump>().Jumping();
         }
