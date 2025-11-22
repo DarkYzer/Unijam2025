@@ -2,6 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 public class PlayerMovement : MonoBehaviour
 {
+<<<<<<< Updated upstream
+=======
+    public static PlayerMovement Singleton { get; private set; }
+>>>>>>> Stashed changes
     public static int playerAmount = 1;
     public List<Vector2> listCoords = new List<Vector2>();
     public float speed;
@@ -37,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log($"X:{deltaX} Y:{deltaY}");
 
             if (deltaX != 0 && deltaY != 0){
-                if (deltaX > deltaY)
+                if (Mathf.Abs(deltaX) < Mathf.Abs(deltaY))
                     newCoord += Vector2.up * deltaY/Mathf.Abs(deltaY);
                 else
                     newCoord += Vector2.right * deltaX/Mathf.Abs(deltaX);
@@ -51,25 +55,27 @@ public class PlayerMovement : MonoBehaviour
             //else if (otherPos.x < myPos.x - offset)
             //    newCoord += Vector2.left;
 
-            // ---- ATTACH ----
-            Transform otherT = collision.collider.transform;
-            otherT.SetParent(transform);
             
-            Debug.Log($"{newCoord} !!!!!!!!!!!!!!!");
+            
+            Debug.Log($"{newCoord} !!!!!!!!!!!!!!!, {listCoords.Contains(newCoord)}");
 
             if (! listCoords.Contains(newCoord))
             {
+                // ---- ATTACH ----
+                Transform otherT = collision.collider.transform;
+                otherT.SetParent(transform);
                 playerAmount ++;
                 otherBonhomme.localCoord = newCoord;
                 listCoords.Add(newCoord);
+                // ---- PLACEMENT ----
+                otherT.localPosition = new Vector3(
+                    newCoord.x * 2* offset,
+                    newCoord.y * 2* offset,
+                    0
+                );
             }
 
-            // ---- PLACEMENT ----
-            otherT.localPosition = new Vector3(
-                newCoord.x * 2* offset,
-                newCoord.y * 2* offset,
-                0
-            );
+            
         }
     }
 
