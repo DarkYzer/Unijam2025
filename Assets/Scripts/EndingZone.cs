@@ -8,6 +8,6 @@ public class EndingZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(partsAmount == partsCompleted) Debug.Log("gagné!");
+        if(partsAmount == partsCompleted && PlayerMovement.playerAmount == partsAmount) Debug.Log("gagné!");
     }
 }
