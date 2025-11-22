@@ -10,7 +10,7 @@ public class Jump : MonoBehaviour
         imgSize = GetComponent<PlayerMovement>().imgSize;
     }
     
-    void Jumping()
+    public void Jumping()
     {
         if (Input.GetKeyDown(space))
 	    {
