@@ -99,8 +99,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(d)) MoveRight();
         if (Input.GetKey(q)) MoveLeft();
         if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
-            rb.gravityScale = 1;
             GetComponent<Jump>().Jumping();
+        }
+        if (Input.GetKey(KeyCode.Space)) {
+            rb.gravityScale = 1;
         }
     }
 }
