@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Singleton { get; private set; }
+
     public static int playerAmount = 1;
     public float speed;
     public float imgSize;
@@ -9,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode q = KeyCode.Q;
     public float jumpCoolDown;
     public float lastTimeJump;
+
+    private void Awake()
+    {
+        Singleton = this;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
