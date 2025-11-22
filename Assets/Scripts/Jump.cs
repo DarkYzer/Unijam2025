@@ -10,11 +10,11 @@ public class Jump : MonoBehaviour
         imgSize = GetComponent<PlayerMovement>().imgSize;
     }
     
-    void Jump()
+    void Jumping()
     {
         if (Input.GetKeyDown(space))
 	    {
-		rb.AddForce(new Vector2(0, imgSize/2), ForceMode2D.Impulse);
+		    rb.AddForce(new Vector2(0, imgSize/2), ForceMode2D.Impulse);
 	    }
     }
 }
