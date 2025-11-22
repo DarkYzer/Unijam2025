@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EndingPart : MonoBehaviour
 {
+    private int counter = 0;
     void Start()
     {
         EndingZone.partsAmount++;
@@ -14,7 +15,8 @@ public class EndingPart : MonoBehaviour
         Bonhomme bonhomme;
         other.gameObject.TryGetComponent<Bonhomme>(out bonhomme);
         bonhomme.counter++;
-        if(bonhomme.counter == 1) EndingZone.partsCompleted++;
+        counter ++;
+        if(bonhomme.counter == 1 && counter == 1) EndingZone.partsCompleted++;
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -22,6 +24,7 @@ public class EndingPart : MonoBehaviour
         Bonhomme bonhomme;
         other.gameObject.TryGetComponent<Bonhomme>(out bonhomme);
         bonhomme.counter--;
-        if(bonhomme.counter == 0) EndingZone.partsCompleted--;
+        counter--;
+        if(bonhomme.counter == 0 && counter == 0) EndingZone.partsCompleted--;
     }
 }
