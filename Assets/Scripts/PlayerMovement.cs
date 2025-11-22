@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement: MonoBehaviour
-{
+public class PlayerMovement: MonoBehaviour{
+
+    public static int playerAmount;
     public float speed;   
     public float imgSize;
     public Vector3 deplacement;
@@ -11,38 +12,39 @@ public class PlayerMovement: MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Collider2D otherCollider = collision.collider;
-        Collider2D myCollider = collision.otherCollider;
+        Bonhomme myBonhomme = collision.otherCollider.GetComponent<Bonhomme>();
+        Bonhomme otherBonhomme = collision.collider.GetComponent<Bonhomme>();
 
-        Bonhomme myBonhomme = myCollider.GetComponent<Bonhomme>();
-        Bonhomme otherBonhomme = otherCollider.GetComponent<Bonhomme>();
+        if (otherBonhomme == null) return;
 
-        Debug.Log($"{otherCollider.transform.position} | {myCollider.transform.position}");
+        Vector2 myLocalCoord = myBonhomme.localCoord;
+        Vector2 newCoord = myLocalCoord;
 
-        if (otherBonhomme != null && collision.gameObject.CompareTag("bonhomme"))
-        {
-            Vector2 myLocalCoord = myBonhomme.localCoord;
-            Debug.Log($"me: {myCollider.name}, other: {otherCollider.name}, myCoord:{myLocalCoord}, otherCoord:{otherBonhomme.localCoord}");
+        Vector3 myPos = collision.otherCollider.transform.position;
+        Vector3 otherPos = collision.collider.transform.position;
 
-            // Exemple logique droite/gauche/haut/bas
-            if (otherCollider.transform.position.x > myCollider.transform.position.x + imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(1,0);
-            else if (otherCollider.transform.position.x <= myCollider.transform.position.x - imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(-1,0);
+        if (otherPos.x > myPos.x) newCoord += new Vector2(1, 0);
+        else if (otherPos.x < myPos.x) newCoord += new Vector2(-1, 0);
 
-            if (otherCollider.transform.position.y > myCollider.transform.position.y + imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(0,1);
-            else if (otherCollider.transform.position.y <= myCollider.transform.position.y - imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(0,-1);
+        else if (otherPos.y > myPos.y) newCoord += new Vector2(0, 1);
+        else if (otherPos.y < myPos.y) newCoord += new Vector2(0, -1);
 
-            collision.transform.SetParent(transform);
-            otherCollider.transform.localPosition = new Vector3(
-                otherBonhomme.localCoord.x * imgSize/2,
-                otherBonhomme.localCoord.y * imgSize/2,
-                0
-            );
-        }
+        Debug.Log($"{otherPos.x > myPos.x + imgSize}, {otherPos.x < myPos.x - imgSize}, {otherPos.y > myPos.y + imgSize}, {otherPos.y < myPos.y - imgSize}");
+        Debug.Log($"other: {otherPos}, my : {myPos}");
+        Debug.Log($"me: {collision.otherCollider.name}, other : {collision.collider.name}");
+        Transform otherTransform = collision.collider.transform;
+        otherTransform.SetParent(transform);
+        otherBonhomme.localCoord = newCoord;
+
+        otherTransform.localPosition = new Vector3(
+            newCoord.x * imgSize / 2f,
+            newCoord.y * imgSize / 2f,
+            0
+        );
+
+        Debug.Log("localCoord modifié =" + otherBonhomme.localCoord);
     }
+
 
 
     void Start()
