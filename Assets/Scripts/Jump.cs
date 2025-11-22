@@ -39,5 +39,6 @@ public class Jump : MonoBehaviour
     public void Jumping()
     {
         rb.AddForce(new Vector2(0, jumpForce + imgSize/2), ForceMode2D.Impulse);
+        rb.gravityScale = 1;
     }
 }
