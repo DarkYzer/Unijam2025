@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
                 Transform otherT = collision.collider.transform;
                 playerAmount ++;
                 // ---- PLACEMENT ----
-                Transform localPositionBackup = otherT.localPosition;
+                // Transform localPositionBackup = otherT.localPosition;
 
                 otherT.localPosition = new Vector3(
                     newCoord.x * 2* offset,
