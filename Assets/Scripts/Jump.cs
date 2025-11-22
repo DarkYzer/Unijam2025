@@ -7,9 +7,10 @@ public class Jump : MonoBehaviour
     public Rigidbody2D rb;
     void Start()
     {
+        imgSize = GetComponent<PlayerMovement>().imgSize;
     }
     
-    void Update()
+    void Jump()
     {
         if (Input.GetKeyDown(space))
 	    {
