@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static int playerAmount = 0;
+    public static int playerAmount = 1;
     public float speed;
     public float imgSize;
     public KeyCode d = KeyCode.D;
