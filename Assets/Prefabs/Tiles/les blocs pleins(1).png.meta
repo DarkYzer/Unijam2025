@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a8623d081e0cf5f41a8c548a78a88a2b
+guid: 34b1d47d0b6bba0419506b82cafdd3ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7840366956675573475
-    second: tile_default_b_0
+      213: 1383033005378286103
+    second: les blocs pleins(1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 2048
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tile_default_b_0
+      name: les blocs pleins(1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2048
-        height: 2048
+        width: 2441
+        height: 2451
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e6ab5105349ecc60800000000000000
-      internalID: 7840366956675573475
+      spriteID: 712b636d035813310800000000000000
+      internalID: 1383033005378286103
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tile_default_b_0: 7840366956675573475
+      les blocs pleins(1)_0: 1383033005378286103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
