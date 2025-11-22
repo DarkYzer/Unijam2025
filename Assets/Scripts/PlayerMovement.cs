@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float imgSize;
     public KeyCode d = KeyCode.D;
     public KeyCode q = KeyCode.Q;
-    private float lastTimeJump = 0;
     public float jumpCoolDown;
+    public float lastTimeJump;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(d)) transform.position += Vector3.right * speed * Time.deltaTime;
         if (Input.GetKey(q)) transform.position += Vector3.left * speed * Time.deltaTime;
-        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey("space")){
+        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey(GetComponent<Jump>().space)){
             lastTimeJump = Time.time;
             GetComponent<Jump>().Jumping();
         }

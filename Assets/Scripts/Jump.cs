@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public float imgSize;
+    private float imgSize;
+    public float jumpForce;
     public KeyCode space = KeyCode.Space;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     void Start()
     {
         imgSize = GetComponent<PlayerMovement>().imgSize;
+        rb = GetComponent<Rigidbody2D>();
     }
     
-    void Jumping()
+    public void Jumping()
     {
         if (Input.GetKeyDown(space))
 	    {
-		    rb.AddForce(new Vector2(0, imgSize/2), ForceMode2D.Impulse);
+		    rb.AddForce(new Vector2(0, jumpForce + imgSize/2), ForceMode2D.Impulse);
 	    }
     }
 }
