@@ -1,7 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Singleton { get; private set; }
+
     public static int playerAmount = 1;
     public List<Vector2> listCoords = new List<Vector2>();
     public float speed;
@@ -11,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCoolDown;
     public float lastTimeJump;
 
+    private void Awake()
+    {
+        Singleton = this;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
