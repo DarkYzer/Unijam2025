@@ -84,13 +84,13 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        if (rb.velocity.magnitude < velocityMax)
+        if (rb.linearVelocity.magnitude < velocityMax)
             rb.AddForce(Vector2.left * speed);
     }
 
     void MoveRight()
     {
-        if (rb.velocity.magnitude < velocityMax)
+        if (rb.linearVelocity.magnitude < velocityMax)
             rb.AddForce(Vector2.right * speed);
     }
 
@@ -99,8 +99,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(d)) MoveRight();
         if (Input.GetKey(q)) MoveLeft();
         if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
-            rb.gravityScale = 1;
             GetComponent<Jump>().Jumping();
+        }
+        if (Input.GetKey(KeyCode.Space)) {
+            rb.gravityScale = 1;
         }
     }
 }
