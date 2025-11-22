@@ -1,57 +1,108 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
-public class PlayerMovement: MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float speed;   
+    public static PlayerMovement Singleton { get; private set; }
+
+    public static int playerAmount = 1;
+    public List<Vector2> listCoords = new List<Vector2>();
+    public float speed;
     public float imgSize;
-    public Vector3 deplacement;
     public KeyCode d = KeyCode.D;
     public KeyCode q = KeyCode.Q;
+    public float jumpCoolDown;
+    public float lastTimeJump;
+
+    private void Awake()
+    {
+        Singleton = this;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Collider2D otherCollider = collision.collider;
-        Collider2D myCollider = collision.otherCollider;
-
-        Bonhomme myBonhomme = myCollider.GetComponent<Bonhomme>();
-        Bonhomme otherBonhomme = otherCollider.GetComponent<Bonhomme>();
-
-        Debug.Log($"{otherCollider.transform.position} | {myCollider.transform.position}");
-
-        if (otherBonhomme != null && collision.gameObject.CompareTag("bonhomme"))
+        Bonhomme myBonhomme = collision.otherCollider.GetComponent<Bonhomme>();
+        Bonhomme otherBonhomme = collision.collider.GetComponent<Bonhomme>();
+        
+        if (Vector3.Distance(collision.otherCollider.transform.position, collision.collider.transform.position) < imgSize/1.5f)
         {
-            Vector2 myLocalCoord = myBonhomme.localCoord;
-            Debug.Log($"me: {myCollider.name}, other: {otherCollider.name}, myCoord:{myLocalCoord}, otherCoord:{otherBonhomme.localCoord}");
+            if (otherBonhomme == null) return;
 
-            // Exemple logique droite/gauche/haut/bas
-            if (otherCollider.transform.position.x > myCollider.transform.position.x + imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(1,0);
-            else if (otherCollider.transform.position.x <= myCollider.transform.position.x - imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(-1,0);
+            // POSITIONS MONDE AVANT DE TOUCHER AU PARENT
+            Vector3 myPos = collision.otherCollider.transform.position;
+            Vector3 otherPos = collision.collider.transform.position;
 
-            if (otherCollider.transform.position.y > myCollider.transform.position.y + imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(0,1);
-            else if (otherCollider.transform.position.y <= myCollider.transform.position.y - imgSize)
-                otherBonhomme.localCoord = myLocalCoord + new Vector2(0,-1);
+            Vector2 newCoord = myBonhomme.localCoord;
 
-            collision.transform.SetParent(transform);
-            otherCollider.transform.localPosition = new Vector3(
-                otherBonhomme.localCoord.x * imgSize/2,
-                otherBonhomme.localCoord.y * imgSize/2,
+            float offset = imgSize / 4f;
+
+            // ---- DÉTECTION DIRECTION ----
+            float deltaX = otherPos.x - myPos.x;
+            float deltaY = otherPos.y - myPos.y;
+
+            Debug.Log($"X:{deltaX} Y:{deltaY}");
+
+            if (deltaX != 0 && deltaY != 0){
+                if (deltaX > deltaY)
+                    newCoord += Vector2.up * deltaY/Mathf.Abs(deltaY);
+                else
+                    newCoord += Vector2.right * deltaX/Mathf.Abs(deltaX);
+            } else return;
+            //if (otherPos.y > myPos.y + offset)
+            //    newCoord += Vector2.up;
+            //else if (otherPos.y < myPos.y - offset)
+            //    newCoord += Vector2.down;
+            //else if (otherPos.x > myPos.x + offset)
+            //    newCoord += Vector2.right;
+            //else if (otherPos.x < myPos.x - offset)
+            //    newCoord += Vector2.left;
+
+            // ---- ATTACH ----
+            Transform otherT = collision.collider.transform;
+            otherT.SetParent(transform);
+            
+            Debug.Log($"{newCoord} !!!!!!!!!!!!!!!");
+
+            if (! listCoords.Contains(newCoord))
+            {
+                playerAmount ++;
+                otherBonhomme.localCoord = newCoord;
+                listCoords.Add(newCoord);
+            }
+
+            // ---- PLACEMENT ----
+            otherT.localPosition = new Vector3(
+                newCoord.x * 2* offset,
+                newCoord.y * 2* offset,
                 0
             );
         }
     }
 
-
     void Start()
     {
+        listCoords.Add(new Vector2(0,0));
+    }
+
+    void MoveLeft()
+    {
+        transform.position += Vector3.left * speed * Time.deltaTime;
+
+    }
+
+    void MoveRight()
+    {
+        transform.position += Vector3.right * speed * Time.deltaTime;
         
     }
-    void Update()
-    {   
-        if (Input.GetKey(d)) transform.position += new Vector3 (speed*Time.deltaTime, 0, 0);
-        if (Input.GetKey(q)) transform.position += new Vector3 (-speed*Time.deltaTime, 0, 0);
+
+    void FixedUpdate()
+    {
+        if (Input.GetKey(d)) MoveRight();
+        if (Input.GetKey(q)) MoveLeft();
+        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey(GetComponent<Jump>().space)){
+            lastTimeJump = Time.time;
+            GetComponent<Jump>().Jumping();
+        }
     }
 }
