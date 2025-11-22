@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static int playerAmount;
+    public static int playerAmount = 0;
     public float speed;
     public float imgSize;
     public KeyCode d = KeyCode.D;
     public KeyCode q = KeyCode.Q;
+    private float lastTimeJump = 0;
+    public float jumpCoolDown;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -35,8 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (otherPos.y < myPos.y - offset)
             newCoord += Vector2.down;
-
-        Debug.Log($"myPos={myPos}, otherPos={otherPos}, newCoord={newCoord}");
+        playerAmount ++;
 
         // ---- ATTACH ----
         Transform otherT = collision.collider.transform;
@@ -50,13 +51,15 @@ public class PlayerMovement : MonoBehaviour
             newCoord.y * 2* offset,
             0
         );
-
-        Debug.Log($"localCoord modifié = {otherBonhomme.localCoord}");
     }
 
     void Update()
     {
         if (Input.GetKey(d)) transform.position += Vector3.right * speed * Time.deltaTime;
         if (Input.GetKey(q)) transform.position += Vector3.left * speed * Time.deltaTime;
+        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey("space")){
+            lastTimeJump = Time.time;
+            // GetComponent<Jump>();
+        }
     }
 }
