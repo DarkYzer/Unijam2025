@@ -87,14 +87,12 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        rb.MovePosition(transform.position  + Vector3.left * speed * Time.deltaTime);
-
+        rb.AddForce(Vector2.left * speed);
     }
 
     void MoveRight()
     {
-        rb.MovePosition(transform.position  + Vector3.right * speed * Time.deltaTime);
-        
+        rb.AddForce(Vector2.right * speed);
     }
 
     void FixedUpdate()
