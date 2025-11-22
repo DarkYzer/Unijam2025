@@ -362,6 +362,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aecf5f53a9537d743a1bed9524df3147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetCamera: {fileID: 521345587}
+  viewportMargin: 0.238
+  reloadSceneOnExit: 1
+  respawnPoint: {fileID: 0}
 --- !u!1 &1389179062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1185,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1419,6 +1423,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 0a4d53a64e295b141afbe09a5477ab42, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 1656c5b0b913d9943867c13097709e53, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 61
     m_Data: {fileID: -1773090196, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
@@ -1428,8 +1434,8 @@ Tilemap:
     m_Data: {fileID: 1819586592, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 1930736498, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -999480541, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 12
     m_Data: {fileID: 1402431149, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
   - m_RefCount: 1
@@ -1440,6 +1446,8 @@ Tilemap:
     m_Data: {fileID: -7708920532220806285, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -9163426285224168042, guid: d04c1f6d70ae63446a446dd5ee16febd, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -999480541, guid: 289e0bf9f5db56d43ac68300548808a1, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -1480,6 +1488,8 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 94
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
