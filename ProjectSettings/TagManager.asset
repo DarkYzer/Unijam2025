@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - bonhomme
+  - EndingZone
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ending
   - Water
   - UI
   - 
