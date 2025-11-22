@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode q = KeyCode.Q;
     public Rigidbody2D rb;
 
+    public float velocityMax;
 
     private void Awake()
     {
@@ -56,10 +57,6 @@ public class PlayerMovement : MonoBehaviour
             //else if (otherPos.x < myPos.x - offset)
             //    newCoord += Vector2.left;
 
-            
-            
-            Debug.Log($"{newCoord} !!!!!!!!!!!!!!!, {listCoords.Contains(newCoord)}");
-
             if (! listCoords.Contains(newCoord))
             {
                 // ---- ATTACH ----
@@ -87,12 +84,14 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveLeft()
     {
-        rb.AddForce(Vector2.left * speed);
+        if (rb.velocity.magnitude < velocityMax)
+            rb.AddForce(Vector2.left * speed);
     }
 
     void MoveRight()
     {
-        rb.AddForce(Vector2.right * speed);
+        if (rb.velocity.magnitude < velocityMax)
+            rb.AddForce(Vector2.right * speed);
     }
 
     void FixedUpdate()
@@ -100,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(d)) MoveRight();
         if (Input.GetKey(q)) MoveLeft();
         if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
+            rb.gravityScale = 1;
             GetComponent<Jump>().Jumping();
         }
     }
