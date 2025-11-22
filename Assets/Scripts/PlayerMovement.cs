@@ -61,16 +61,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 // ---- ATTACH ----
                 Transform otherT = collision.collider.transform;
-                otherT.SetParent(transform);
                 playerAmount ++;
+                // ---- PLACEMENT ----
+                // Transform localPositionBackup = otherT.localPosition;
                 otherBonhomme.localCoord = newCoord;
                 listCoords.Add(newCoord);
-                // ---- PLACEMENT ----
+                otherT.SetParent(transform);
+
                 otherT.localPosition = new Vector3(
                     newCoord.x * 2* offset,
                     newCoord.y * 2* offset,
                     0
                 );
+                
+                // if ()
+
+                
             }
 
             
@@ -105,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
             GetComponent<Jump>().Jumping();
         }
-        if (Input.GetKey(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             rb.gravityScale = 1;
         }
 

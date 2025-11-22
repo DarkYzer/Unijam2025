@@ -121,11 +121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listCoords: []
   speed: 10
-  imgSize: 2.2
+  imgSize: 2
   d: 100
   q: 97
   rb: {fileID: 0}
-  velocityMax: 0
+  velocityMax: 1
 --- !u!50 &7760611694707577379
 Rigidbody2D:
   serializedVersion: 5
