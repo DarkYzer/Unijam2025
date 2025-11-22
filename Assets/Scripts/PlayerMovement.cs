@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(d)) transform.position += Vector3.right * speed * Time.deltaTime;
         if (Input.GetKey(q)) transform.position += Vector3.left * speed * Time.deltaTime;
-        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey("space")){
+        if (Time.time - lastTimeJump > jumpCoolDown && Input.GetKey(GetCompopnent<Jump>().space)){
             lastTimeJump = Time.time;
             GetComponent<Jump>().Jumping();
         }
