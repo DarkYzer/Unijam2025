@@ -32,65 +32,67 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Collider2D otherCollider = collider;
+        if (collider.transform.CompareTag("bonhomme")){
+            Collider2D otherCollider = transform.GetChild(0).GetComponent<Collider2D>();
+            float distMin = Vector2.Distance(otherCollider.transform.position, collider.transform.position);
+            for(int i = 1; i < transform.childCount; i++)
+            {
+                Collider2D col = transform.GetChild(i).GetComponent<Collider2D>();
+                // Debug.Log($"{col.gameObject.name} -> {collider.gameObject.name}");
+                // On calcule la distance entre ce collider et celui qui entre
+                float dist = Vector2.Distance(col.transform.position, collider.transform.position);
+                // Debug.Log(dist);
+                // Si ils sont en contact (isOverlapped = true)
+                if (dist < distMin)
+                    otherCollider = col;
+            }
+            Bonhomme myBonhomme = otherCollider.GetComponent<Bonhomme>();
+            Bonhomme otherBonhomme = collider.GetComponent<Bonhomme>();
+            
+            if (otherBonhomme == null) return;
 
-        for(int i = 0; i < transform.childCount; i++)
-        {
-            Collider2D col = transform.GetChild(i).GetComponent<Collider2D>();
-            // Debug.Log($"{col.gameObject.name} -> {collider.gameObject.name}");
-            // On calcule la distance entre ce collider et celui qui entre
-            float dist = Vector2.Distance(col.transform.position, collider.transform.position);
-            // Debug.Log(dist);
-            // Si ils sont en contact (isOverlapped = true)
-            if (dist < 1f)
-                otherCollider = col;
-        }
-        Bonhomme myBonhomme = otherCollider.GetComponent<Bonhomme>();
-        Bonhomme otherBonhomme = collider.GetComponent<Bonhomme>();
-        
-        if (otherBonhomme == null) return;
+            // POSITIONS MONDE AVANT DE TOUCHER AU PARENT
+            Vector3 myPos = otherCollider.transform.position;
+            Vector3 otherPos = collider.transform.position;
 
-        // POSITIONS MONDE AVANT DE TOUCHER AU PARENT
-        Vector3 myPos = otherCollider.transform.position;
-        Vector3 otherPos = collider.transform.position;
+            Vector2 newCoord = myBonhomme.localCoord;
 
-        Vector2 newCoord = myBonhomme.localCoord;
+            float offset = imgSize / 4f;
 
-        float offset = imgSize / 4f;
+            // ---- DÉTECTION DIRECTION ----
+            float deltaX = otherPos.x - myPos.x;
+            float deltaY = otherPos.y - myPos.y;
 
-        // ---- DÉTECTION DIRECTION ----
-        float deltaX = otherPos.x - myPos.x;
-        float deltaY = otherPos.y - myPos.y;
+            // Debug.Log($"X:{deltaX} Y:{deltaY}");
 
-        // Debug.Log($"X:{deltaX} Y:{deltaY}");
-
-        if (deltaY != 0 && Mathf.Abs(deltaX) < Mathf.Abs(deltaY))
-            newCoord += Vector2.up * deltaY/Mathf.Abs(deltaY);
-        else if (deltaX != 0)
-            newCoord += Vector2.right * deltaX/Mathf.Abs(deltaX);
-        else return;
-        //if (otherPos.y > myPos.y + offset)
-        //    newCoord += Vector2.up;
-        //else if (otherPos.y < myPos.y - offset)
-        //    newCoord += Vector2.down;
-        //else if (otherPos.x > myPos.x + offset)
-        //    newCoord += Vector2.right;
-        //else if (otherPos.x < myPos.x - offset)
-        //    newCoord += Vector2.left;
-        if (! listCoords.Contains(newCoord))
-        {
-            // ---- ATTACH ----
-            Transform otherT = collider.transform;
-            otherT.SetParent(transform);
-            playerAmount ++;
-            otherBonhomme.localCoord = newCoord;
-            listCoords.Add(newCoord);
-            // ---- PLACEMENT ----
-            otherT.localPosition = new Vector3(
-                newCoord.x * 2* offset,
-                newCoord.y * 2* offset,
-                0
-            );
+            if (deltaY != 0 && Mathf.Abs(deltaX) < Mathf.Abs(deltaY))
+                newCoord += Vector2.up * deltaY/Mathf.Abs(deltaY);
+            else if (deltaX != 0)
+                newCoord += Vector2.right * deltaX/Mathf.Abs(deltaX);
+            else return;
+            //if (otherPos.y > myPos.y + offset)
+            //    newCoord += Vector2.up;
+            //else if (otherPos.y < myPos.y - offset)
+            //    newCoord += Vector2.down;
+            //else if (otherPos.x > myPos.x + offset)
+            //    newCoord += Vector2.right;
+            //else if (otherPos.x < myPos.x - offset)
+            //    newCoord += Vector2.left;
+            if (! listCoords.Contains(newCoord))
+            {
+                // ---- ATTACH ----
+                Transform otherT = collider.transform;
+                otherT.SetParent(transform);
+                playerAmount ++;
+                otherBonhomme.localCoord = newCoord;
+                listCoords.Add(newCoord);
+                // ---- PLACEMENT ----
+                otherT.localPosition = new Vector3(
+                    newCoord.x * 2* offset,
+                    newCoord.y * 2* offset,
+                    0
+                );
+            }
         }
     }
 

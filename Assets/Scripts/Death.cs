@@ -3,24 +3,24 @@ using UnityEngine.SceneManagement;
 
 public class DeathZone : MonoBehaviour
 {
-    [Tooltip("Caméra utilisée pour le test. Si null, Camera.main sera utilisée.")]
+    [Tooltip("Camï¿½ra utilisï¿½e pour le test. Si null, Camera.main sera utilisï¿½e.")]
     public Camera targetCamera;
 
-    [Tooltip("Tolérance en dehors du viewport (valeurs positives étendent la zone)")]
+    [Tooltip("Tolï¿½rance en dehors du viewport (valeurs positives ï¿½tendent la zone)")]
     [Range(0f, 0.5f)]
     public float viewportMargin = 0.0f;
 
-    [Tooltip("Si vrai : recharge la scène quand le joueur sort de la vue. Sinon : téléporte au point de respawn.")]
+    [Tooltip("Si vrai : recharge la scï¿½ne quand le joueur sort de la vue. Sinon : tï¿½lï¿½porte au point de respawn.")]
     public bool reloadSceneOnExit = true;
 
-    [Tooltip("Point où téléporter le joueur si reloadSceneOnExit == false. Si null, la position de départ sera utilisée.")]
+    [Tooltip("Point oï¿½ tï¿½lï¿½porter le joueur si reloadSceneOnExit == false. Si null, la position de dï¿½part sera utilisï¿½e.")]
     public Transform respawnPoint;
 
-    // position/rotation de départ (utilisée si respawnPoint == null)
+    // position/rotation de dï¿½part (utilisï¿½e si respawnPoint == null)
     private Vector3 startPosition;
     private Quaternion startRotation;
 
-    // empêche de déclencher plusieurs fois durant la même sortie
+    // empï¿½che de dï¿½clencher plusieurs fois durant la mï¿½me sortie
     private bool hasExited = false;
 
     private void Start()
@@ -41,12 +41,9 @@ public class DeathZone : MonoBehaviour
 
         Vector3 vp = targetCamera.WorldToViewportPoint(transform.position);
 
-        // vp.z < 0 -> derrière la caméra
+        // vp.z < 0 -> derriï¿½re la camï¿½ra
         bool outside = vp.z < 0f
-                       || vp.x < -viewportMargin
-                       || vp.x > 1f + viewportMargin
-                       || vp.y < -viewportMargin
-                       || vp.y > 1f + viewportMargin;
+                       || vp.y < -viewportMargin;
 
         if (outside)
         {
@@ -74,7 +71,7 @@ public class DeathZone : MonoBehaviour
                 transform.rotation = startRotation;
             }
 
-            // Permet de redétecter une sortie après le respawn
+            // Permet de redï¿½tecter une sortie aprï¿½s le respawn
             hasExited = false;
         }
     }
