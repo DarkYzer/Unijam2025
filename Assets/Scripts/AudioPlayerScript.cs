@@ -44,11 +44,6 @@ public sealed class AudioPlayerScript : MonoBehaviour
         Singleton = this;
     }
 
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
     private void Update()
     {
         _loopAudioSource.volume = AudioSliderScript.volume;
