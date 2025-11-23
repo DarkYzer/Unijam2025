@@ -2,29 +2,13 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    private float imgSize;
     public float jumpForce;
     public LayerMask PlatformLayerMask;
-    [SerializeField] private Rigidbody2D rb;
-    void Start()
-    {
-        imgSize = GetComponent<PlayerMovement>().imgSize;
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-
-
     public bool IsGroundedChild(Collider2D col)
     {
-        RaycastHit2D hit = Physics2D.Raycast(col.bounds.center, Vector2.down, col.bounds.extents.y + 0.1f, PlatformLayerMask);
-        if (hit.collider != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        RaycastHit2D hit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0, Vector2.down, 0.1f, PlatformLayerMask);
+        
+        return hit;
     }
     public bool IsGrounded()
     {
@@ -38,7 +22,7 @@ public class Jump : MonoBehaviour
     }
     public void Jumping()
     {
-        rb.AddForce(new Vector2(0, jumpForce + imgSize/2), ForceMode2D.Impulse);
-        rb.gravityScale = 1;
+        PlayerMovement.Singleton.rb.AddForce(new Vector2(0, jumpForce + PlayerMovement.Singleton.imgSize / 2), ForceMode2D.Impulse);
+        PlayerMovement.Singleton.rb.gravityScale = 1;
     }
 }

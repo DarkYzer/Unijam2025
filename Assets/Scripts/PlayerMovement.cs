@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode q = KeyCode.Q;
     public Rigidbody2D rb;
 
+    [SerializeField]
+    private Jump _jump;
+
     public float velocityMax = 1;
 
     private void Awake()
@@ -108,8 +111,8 @@ public class PlayerMovement : MonoBehaviour
         // if (Input.GetKey(q)) rb.linearVelocity = new Vector3(rb.linearVelocity.x - velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKeyUp(d)) rb.linearVelocity = new Vector3(rb.linearVelocity.x + velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKeyUp(q)) rb.linearVelocity = new Vector3(rb.linearVelocity.x - velocityMax, rb.linearVelocity.y, 0);
-        if (GetComponent<Jump>().IsGrounded() && Input.GetKey(KeyCode.Space)){
-            GetComponent<Jump>().Jumping();
+        if (_jump.IsGrounded() && Input.GetKey(KeyCode.Space)){
+            _jump.Jumping();
         }
         if (Input.GetKeyDown(KeyCode.Space)) {
             rb.gravityScale = 1;
