@@ -6,7 +6,7 @@ public class Jump : MonoBehaviour
     public LayerMask PlatformLayerMask;
     public bool IsGroundedChild(Collider2D col)
     {
-        RaycastHit2D hit = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0, Vector2.down, 0.1f, PlatformLayerMask);
+        RaycastHit2D hit = Physics2D.BoxCast(col.bounds.center, 0.9f * col.bounds.size, 0, Vector2.down, 0.15f, PlatformLayerMask);
         
         return hit;
     }
