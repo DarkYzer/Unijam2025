@@ -4,7 +4,7 @@ public class EndingZone : MonoBehaviour
 {
     public static int partsAmount = 0;
     public static int partsCompleted = 0;
-    public float offset;
+    public float offset = .5f;
     public GameObject player;
 
     bool HasWin()
