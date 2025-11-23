@@ -21,9 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Collider2D otherCollider = collider;
-
-        float distMin = Vector2.Distance(transform.GetChild(0).GetComponent<Collider2D>().transform.position, collider.transform.position);
+        Collider2D otherCollider = transform.GetChild(0).GetComponent<Collider2D>();
+        float distMin = Vector2.Distance(otherCollider.transform.position, collider.transform.position);
         for(int i = 1; i < transform.childCount; i++)
         {
             Collider2D col = transform.GetChild(i).GetComponent<Collider2D>();
