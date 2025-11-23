@@ -8,10 +8,25 @@ public sealed class AudioPlayerScript : MonoBehaviour
     [SerializeField]
     private AudioSource _loopAudioSource;
 
+    [SerializeField]
+    private AudioSource _walkAudioSource;
+
     public static AudioPlayerScript Singleton { get; private set; }
 
     [SerializeField]
     private AudioClip[] _audioClips;
+
+    public bool WalkSoundPlaying
+    {
+        get => _walkAudioSource.isPlaying;
+        set
+        {
+            if (value && !_walkAudioSource.isPlaying)
+                _walkAudioSource.Play();
+            else if (!value && _walkAudioSource.isPlaying)
+                _walkAudioSource.Stop();
+        }
+    }
 
     public enum SoundType : int
     {
@@ -21,6 +36,7 @@ public sealed class AudioPlayerScript : MonoBehaviour
         Success,
         Failure,
         Snap,
+        Walk,
     }
 
     private void Awake()
@@ -30,8 +46,8 @@ public sealed class AudioPlayerScript : MonoBehaviour
 
     private void Update()
     {
-        //_loopAudioSource.volume = AudioSliderScript.volume;
-        //_audioSource.volume = AudioSliderScript.volume;
+        _loopAudioSource.volume = AudioSliderScript.volume;
+        _audioSource.volume = AudioSliderScript.volume;
     }
 
     public void PlaySound(SoundType type)

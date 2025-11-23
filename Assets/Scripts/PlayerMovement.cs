@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
                     newCoord.y * 2* offset,
                     0
                 );
+                AudioPlayerScript.Singleton.PlaySound(AudioPlayerScript.SoundType.Snap);
             }
         }
     }
@@ -121,14 +122,23 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey(d)) MoveRight();
-        if (Input.GetKey(q)) MoveLeft();
+        if (Input.GetKey(d))
+            MoveRight();
+
+        if (Input.GetKey(q))
+            MoveLeft();
+
         // if (Input.GetKey(d)) rb.linearVelocity = new Vector3(rb.linearVelocity.x + velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKey(q)) rb.linearVelocity = new Vector3(rb.linearVelocity.x - velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKeyUp(d)) rb.linearVelocity = new Vector3(rb.linearVelocity.x + velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKeyUp(q)) rb.linearVelocity = new Vector3(rb.linearVelocity.x - velocityMax, rb.linearVelocity.y, 0);
-        if (_jump.IsGrounded() && _jumpKeyPressed)
-            _jump.Jumping();
+        if (_jump.IsGrounded())
+        {
+            if (_jumpKeyPressed)
+                _jump.Jumping();
+
+            AudioPlayerScript.Singleton.WalkSoundPlaying = rb.linearVelocity.sqrMagnitude > 0.3f;
+        }
         
         if (_jumpKeyPressed)
             UnsnapFromRoof();
