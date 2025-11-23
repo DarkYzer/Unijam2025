@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndingZone : MonoBehaviour
 {
@@ -30,11 +31,11 @@ public class EndingZone : MonoBehaviour
         {
             case EndType.Normal:
                 if (HasWin() && PlayerMovement.playerAmount == transform.childCount)
-                    Debug.Log("gagné!");
+                    SceneManager.LoadScene("Victory");
                 break;
             case EndType.CollectAmount:
                 if (PlayerMovement.playerAmount >= _collectAmount)
-                    Debug.Log("GIT GUD");
+                    SceneManager.LoadScene("Victory");
                 break;
         }
     }
