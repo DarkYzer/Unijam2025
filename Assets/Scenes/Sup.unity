@@ -724,6 +724,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4029743948623125329, guid: eb7fac2074b105542ae4d65fe90b5bb3, type: 3}
+      propertyPath: _audioClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4029743948623125329, guid: eb7fac2074b105542ae4d65fe90b5bb3, type: 3}
+      propertyPath: '_audioClips.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ab0cd1881cc9da54c808f6e7155b2838, type: 3}
     - target: {fileID: 8866311890691734833, guid: eb7fac2074b105542ae4d65fe90b5bb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -764,7 +772,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6791094705823735300, guid: eb7fac2074b105542ae4d65fe90b5bb3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1186,8 +1195,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1662241992 stripped
-Transform:
+--- !u!224 &1662241992 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 6230308051265334034, guid: 2ac4998ea5e12d64587f7e730ab2c4a4, type: 3}
   m_PrefabInstance: {fileID: 1379708647397980197}
   m_PrefabAsset: {fileID: 0}
