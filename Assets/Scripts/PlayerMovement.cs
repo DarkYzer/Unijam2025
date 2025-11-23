@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +11,14 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode d = KeyCode.D;
     public KeyCode q = KeyCode.Q;
     public Rigidbody2D rb;
+
+    private bool _jumpKeyPressed;
+
+    public bool ShouldSnapToGlue => Time.time - _lastUnsnapTime > 0.2f;
+
+    private float _lastUnsnapTime = 0f;
+
+    private bool _glued;
 
     [SerializeField]
     private Jump _jump;
@@ -105,6 +113,12 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.right * speed);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+            _jumpKeyPressed = true;
+    }
+
     void FixedUpdate()
     {
         if (Input.GetKey(d)) MoveRight();
@@ -113,13 +127,38 @@ public class PlayerMovement : MonoBehaviour
         // if (Input.GetKey(q)) rb.linearVelocity = new Vector3(rb.linearVelocity.x - velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKeyUp(d)) rb.linearVelocity = new Vector3(rb.linearVelocity.x + velocityMax, rb.linearVelocity.y, 0);
         // if (Input.GetKeyUp(q)) rb.linearVelocity = new Vector3(rb.linearVelocity.x - velocityMax, rb.linearVelocity.y, 0);
-        if (_jump.IsGrounded() && Input.GetKey(KeyCode.Space)){
+        if (_jump.IsGrounded() && _jumpKeyPressed)
             _jump.Jumping();
-        }
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            rb.gravityScale = 1;
-        }
+        
+        if (_jumpKeyPressed)
+            UnsnapFromRoof();
 
-        if (Input.GetKeyUp(d) || Input.GetKeyUp(q)) rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+        if (Input.GetKeyUp(d) || Input.GetKeyUp(q))
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+
+        _jumpKeyPressed = false;
+    }
+
+    public void SnapToRoof()
+    {
+        if (_glued)
+            return;
+
+        Debug.Log("Snapping to roof");
+
+        rb.gravityScale = 0;
+        _glued = true;
+    }
+
+    public void UnsnapFromRoof()
+    {
+        if (!_glued)
+            return;
+
+        Debug.Log("Unsnapping to roof");
+
+        _glued = false;
+        rb.gravityScale = 1;
+        _lastUnsnapTime = Time.time;
     }
 }
