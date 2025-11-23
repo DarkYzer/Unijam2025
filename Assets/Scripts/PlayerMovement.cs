@@ -34,22 +34,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collider.transform.tag){
             Collider2D otherCollider = collider;
-
-            for(int i = 0; i < transform.childCount; i++)
-            {
-                Collider2D col = transform.GetChild(i).GetComponent<Collider2D>();
-                // Debug.Log($"{col.gameObject.name} -> {collider.gameObject.name}");
-                // On calcule la distance entre ce collider et celui qui entre
-                float dist = Vector2.Distance(col.transform.position, collider.transform.position);
-                // Debug.Log(dist);
-                // Si ils sont en contact (isOverlapped = true)
-                if (dist < 1.5f)
-                    otherCollider = col;
-            }
-            Bonhomme myBonhomme = otherCollider.GetComponent<Bonhomme>();
-            Bonhomme otherBonhomme = collider.GetComponent<Bonhomme>();
-            
-            if (otherBonhomme == null) return;
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            Collider2D col = transform.GetChild(i).GetComponent<Collider2D>();
+            // Debug.Log($"{col.gameObject.name} -> {collider.gameObject.name}");
+            // On calcule la distance entre ce collider et celui qui entre
+            float dist = Vector2.Distance(col.transform.position, collider.transform.position);
+            // Debug.Log(dist);
+            // Si ils sont en contact (isOverlapped = true)
+            if (dist < 1.2f)
+                otherCollider = col;
+        }
+        Bonhomme myBonhomme = otherCollider.GetComponent<Bonhomme>();
+        Bonhomme otherBonhomme = collider.GetComponent<Bonhomme>();
+        
+        if (otherBonhomme == null) return;
 
             // POSITIONS MONDE AVANT DE TOUCHER AU PARENT
             Vector3 myPos = otherCollider.transform.position;
