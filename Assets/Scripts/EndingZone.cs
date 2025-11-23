@@ -2,13 +2,59 @@ using UnityEngine;
 
 public class EndingZone : MonoBehaviour
 {
-    public static int partsAmount = 0;
-    public static int partsCompleted = 0;
+    public float offset = .5f;
+
+    public static EndingZone Singleton { get; private set; }
+
+    [SerializeField]
+    private EndType _endType = EndType.Normal;
+
+    [SerializeField]
+    private int _collectAmount;
+
+    private enum EndType
+    {
+        Normal,
+        CollectAmount,
+    }
+
+    private void Awake()
+    {
+        Singleton = this;
+    }
 
     // Update is called once per frame
-    void Update()
+    public void CheckEnding()
     {
-        if(partsAmount <= partsCompleted && PlayerMovement.playerAmount == partsAmount) Debug.Log("gagné!");
-        
+        switch (_endType)
+        {
+            case EndType.Normal:
+                if (HasWin())
+                    Debug.Log("gagné!");
+                break;
+            case EndType.CollectAmount:
+                if (PlayerMovement.playerAmount >= _collectAmount)
+                    Debug.Log("GIT GUD");
+                break;
+        }
+    }
+
+    bool HasWin()
+    {
+        Transform child; bool temp; Transform playerChild;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            child = transform.GetChild(i);
+            temp = false;
+            for (int j = 0; j < PlayerMovement.Singleton.transform.childCount; j++)
+            {
+                playerChild = PlayerMovement.Singleton.transform.GetChild(j);
+                if (Vector2.Distance(child.position, playerChild.position) < offset)
+                    temp = true;
+            }
+            if (temp == false)
+                return false;
+        }
+        return true;
     }
 }

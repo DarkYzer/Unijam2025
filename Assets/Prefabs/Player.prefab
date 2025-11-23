@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7736320524158583774}
   - component: {fileID: 1526469730638485899}
   - component: {fileID: 7760611694707577379}
+  - component: {fileID: 2034884459774731563}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,8 +103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f13060e5845a44b8c563cf553c6cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0
-  space: 32
+  jumpForce: 4
+  PlatformLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  rb: {fileID: 7760611694707577379}
 --- !u!114 &1526469730638485899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,12 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4ec20d6e34e4a4e8ed47fbff961323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listCoords: []
   speed: 10
-  imgSize: 2.2
+  imgSize: 2
   d: 100
   q: 97
-  jumpCoolDown: 1.5
-  lastTimeJump: 0
+  rb: {fileID: 7760611694707577379}
+  velocityMax: 5
 --- !u!50 &7760611694707577379
 Rigidbody2D:
   serializedVersion: 5
@@ -149,3 +154,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2034884459774731563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4984453578181511342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecf5f53a9537d743a1bed9524df3147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  viewportMargin: 0
+  reloadSceneOnExit: 1
+  respawnPoint: {fileID: 0}
