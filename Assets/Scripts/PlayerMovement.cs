@@ -169,4 +169,9 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 1;
         _lastUnsnapTime = Time.time;
     }
+
+    private void OnDestroy()
+    {
+        AudioPlayerScript.Singleton.WalkSoundPlaying = false;
+    }
 }

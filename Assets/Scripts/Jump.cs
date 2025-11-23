@@ -4,12 +4,7 @@ public class Jump : MonoBehaviour
 {
     public float jumpForce;
     public LayerMask PlatformLayerMask;
-    public bool IsGroundedChild(Collider2D col)
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(col.bounds.center, 0.9f * col.bounds.size, 0, Vector2.down, 0.15f, PlatformLayerMask);
-        
-        return hit;
-    }
+    public bool IsGroundedChild(Collider2D col) => Physics2D.BoxCast(col.bounds.center, 0.9f * col.bounds.size, 0, Vector2.down, 0.15f, PlatformLayerMask);
     public bool IsGrounded()
     {
         for (int i = 0; i < transform.childCount; i++)

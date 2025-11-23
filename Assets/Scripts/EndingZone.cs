@@ -25,17 +25,23 @@ public class EndingZone : MonoBehaviour
         PlayerMovement.playerAmount = 1;
     }
 
+    private void Victory()
+    {
+        AudioPlayerScript.Singleton.PlaySound(AudioPlayerScript.SoundType.Success);
+        SceneManager.LoadScene("Victory");
+    }
+
     public void Update()
     {
         switch (_endType)
         {
             case EndType.Normal:
                 if (HasWin() && PlayerMovement.playerAmount == transform.childCount)
-                    SceneManager.LoadScene("Victory");
+                    Victory();
                 break;
             case EndType.CollectAmount:
                 if (PlayerMovement.playerAmount >= _collectAmount)
-                    SceneManager.LoadScene("Victory");
+                    Victory();
                 break;
         }
     }
