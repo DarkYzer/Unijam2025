@@ -18,7 +18,7 @@ public sealed class AudioPlayerScript : MonoBehaviour
 
     public bool WalkSoundPlaying
     {
-        get => _walkAudioSource.isPlaying;
+       get => _walkAudioSource.isPlaying;
         set
         {
             if (value && !_walkAudioSource.isPlaying)
@@ -42,6 +42,11 @@ public sealed class AudioPlayerScript : MonoBehaviour
     private void Awake()
     {
         Singleton = this;
+    }
+
+    void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
