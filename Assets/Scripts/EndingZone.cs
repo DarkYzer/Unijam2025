@@ -21,15 +21,15 @@ public class EndingZone : MonoBehaviour
     private void Awake()
     {
         Singleton = this;
+        PlayerMovement.playerAmount = 1;
     }
 
-    // Update is called once per frame
-    public void CheckEnding()
+    public void Update()
     {
         switch (_endType)
         {
             case EndType.Normal:
-                if (HasWin())
+                if (HasWin() && PlayerMovement.playerAmount == transform.childCount)
                     Debug.Log("gagné!");
                 break;
             case EndType.CollectAmount:
