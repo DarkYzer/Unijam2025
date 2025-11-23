@@ -99,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        AudioPlayerScript.Singleton.PlaySound(AudioPlayerScript.SoundType.Entry);
+        
         listCoords.Add(new Vector2(0,0));
     }
 
