@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             float dist = Vector2.Distance(col.transform.position, collider.transform.position);
             // Debug.Log(dist);
             // Si ils sont en contact (isOverlapped = true)
-            if (dist < 1f)
+            if (dist < 1.2f)
                 otherCollider = col;
         }
         Bonhomme myBonhomme = otherCollider.GetComponent<Bonhomme>();
