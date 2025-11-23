@@ -605,9 +605,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1526469730638485899, guid: 8e348467541c6fa4a92950ec2eca9c59, type: 3}
+      propertyPath: d
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1526469730638485899, guid: 8e348467541c6fa4a92950ec2eca9c59, type: 3}
       propertyPath: rb
       value: 
       objectReference: {fileID: 1568592059}
+    - target: {fileID: 1526469730638485899, guid: 8e348467541c6fa4a92950ec2eca9c59, type: 3}
+      propertyPath: imgSize
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1526469730638485899, guid: 8e348467541c6fa4a92950ec2eca9c59, type: 3}
       propertyPath: velocityMax
       value: 5
