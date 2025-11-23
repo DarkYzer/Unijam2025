@@ -43,8 +43,6 @@ public class DeathZone : MonoBehaviour
 
         // vp.z < 0 -> derri�re la cam�ra
         bool outside = vp.z < 0f
-                       || vp.x < -viewportMargin
-                       || vp.x > 1f + viewportMargin
                        || vp.y < -viewportMargin;
 
         if (outside)
