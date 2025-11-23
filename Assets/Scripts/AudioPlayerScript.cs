@@ -48,6 +48,7 @@ public sealed class AudioPlayerScript : MonoBehaviour
     {
         _loopAudioSource.volume = AudioSliderScript.volume;
         _audioSource.volume = AudioSliderScript.volume;
+        _walkAudioSource.volume = AudioSliderScript.volume * 0.1f;
     }
 
     public void PlaySound(SoundType type)
