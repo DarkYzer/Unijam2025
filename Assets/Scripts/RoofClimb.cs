@@ -6,21 +6,17 @@ public class RoofClimb : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Rigidbody2D rb;
+        if (!PlayerMovement.Singleton.ShouldSnapToGlue)
+            return;
+
         itemsUsing++;
-        if(other.gameObject.transform.parent.gameObject.TryGetComponent<Rigidbody2D>(out rb))
-        {
-            rb.gravityScale = 0;
-        }
+        PlayerMovement.Singleton.SnapToRoof();
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Rigidbody2D rb;
         itemsUsing--;
-        if(other.gameObject.transform.parent.gameObject.TryGetComponent<Rigidbody2D>(out rb) && itemsUsing == 0)
-        {
-            rb.gravityScale = 1;
-        }
+        if (itemsUsing == 0)
+            PlayerMovement.Singleton.UnsnapFromRoof();
     }
 }
