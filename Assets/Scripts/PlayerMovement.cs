@@ -23,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D otherCollider = collider;
 
-        for(int i = 0; i < transform.childCount; i++)
+        float distMin = Vector2.Distance(transform.GetChild(0).GetComponent<Collider2D>().transform.position, collider.transform.position);
+        for(int i = 1; i < transform.childCount; i++)
         {
             Collider2D col = transform.GetChild(i).GetComponent<Collider2D>();
             // Debug.Log($"{col.gameObject.name} -> {collider.gameObject.name}");
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             float dist = Vector2.Distance(col.transform.position, collider.transform.position);
             // Debug.Log(dist);
             // Si ils sont en contact (isOverlapped = true)
-            if (dist < 1.2f)
+            if (dist < distMin)
                 otherCollider = col;
         }
         Bonhomme myBonhomme = otherCollider.GetComponent<Bonhomme>();
