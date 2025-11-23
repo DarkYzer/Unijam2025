@@ -107,7 +107,6 @@ MonoBehaviour:
   PlatformLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  rb: {fileID: 7760611694707577379}
 --- !u!114 &1526469730638485899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +125,7 @@ MonoBehaviour:
   d: 100
   q: 97
   rb: {fileID: 7760611694707577379}
+  _jump: {fileID: 7736320524158583774}
   velocityMax: 5
 --- !u!50 &7760611694707577379
 Rigidbody2D:

@@ -9,7 +9,7 @@ public class EndingPart : MonoBehaviour
         // bonhomme.counter++;
         // counter ++;
         // if(bonhomme.counter == 1 && counter == 1) EndingZone.partsCompleted++;
-        EndingZone.Singleton.CheckEnding();
+        // EndingZone.Singleton.CheckEnding();
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -19,6 +19,6 @@ public class EndingPart : MonoBehaviour
         // bonhomme.counter--;
         // counter--;
         // if(bonhomme.counter == 0 && counter == 0) EndingZone.partsCompleted--;
-        EndingZone.Singleton.CheckEnding();
+        // EndingZone.Singleton.CheckEnding();
     }
 }
