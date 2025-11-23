@@ -12,6 +12,11 @@ public class EndingPart : MonoBehaviour
         // EndingZone.Singleton.CheckEnding();
     }
 
+    void OnTriggerStay2D(Collider2D other)
+    {
+        EndingZone.Singleton.CheckEnding();
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         // Bonhomme bonhomme;

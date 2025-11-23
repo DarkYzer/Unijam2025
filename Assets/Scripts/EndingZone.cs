@@ -31,7 +31,7 @@ public class EndingZone : MonoBehaviour
         SceneManager.LoadScene("Victory");
     }
 
-    public void Update()
+    public void CheckEnding()
     {
         switch (_endType)
         {

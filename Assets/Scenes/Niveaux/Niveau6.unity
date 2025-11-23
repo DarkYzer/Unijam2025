@@ -2142,7 +2142,7 @@ PrefabInstance:
       objectReference: {fileID: 879023}
     - target: {fileID: 7736320524158583774, guid: 8e348467541c6fa4a92950ec2eca9c59, type: 3}
       propertyPath: jumpForce
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7736320524158583774, guid: 8e348467541c6fa4a92950ec2eca9c59, type: 3}
       propertyPath: PlatformLayerMask.m_Bits
