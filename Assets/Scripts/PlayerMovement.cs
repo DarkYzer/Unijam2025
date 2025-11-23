@@ -142,8 +142,6 @@ public class PlayerMovement : MonoBehaviour
         if (_glued)
             return;
 
-        Debug.Log("Snapping to roof");
-
         rb.gravityScale = 0;
         _glued = true;
     }
@@ -152,8 +150,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_glued)
             return;
-
-        Debug.Log("Unsnapping to roof");
 
         _glued = false;
         rb.gravityScale = 1;
